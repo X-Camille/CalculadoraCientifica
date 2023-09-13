@@ -8,6 +8,7 @@ public class CalcularSolucion {
 
     public static void main(String[] args) {
         System.out.println("Melo");
+        resolverSistema();
     }
 
     private static double[] ingresarEcuacion(){
@@ -46,7 +47,31 @@ public class CalcularSolucion {
     }
 
     public static void resolverSistema(){
+        System.out.println("Ingrese su primera ecuación:");
+        double[] ecuacion1=ingresarEcuacion();
+        System.out.println("Ingrese su segunda ecuación:");
+        double[] ecuacion2=ingresarEcuacion();
 
+        double[][] coeficientes = {
+                {ecuacion1[0], ecuacion1[1]},
+                {ecuacion2[0], ecuacion2[1]}
+        };
+        double[] terminosIndependientes = {ecuacion1[2], ecuacion2[2]};
+
+        tieneSolucionUnica(coeficientes,terminosIndependientes);
+    }
+
+    private static void tieneSolucionUnica(double [][] coeficientes, double[] terminosIndependientes){
+        RealMatrix coefficientsMatrix = new Array2DRowRealMatrix(coeficientes, false);
+        DecompositionSolver solver = new LUDecomposition(coefficientsMatrix).getSolver();
+        RealVector constantsVector = new ArrayRealVector(terminosIndependientes, false);
+        try {
+            RealVector solucion = solver.solve(constantsVector);
+            System.out.println("Solución:");
+            System.out.println(solucion);
+        } catch (SingularMatrixException e) {
+            System.err.println("El sistema de ecuaciones no tiene solución única.");
+        }
     }
 
 }
