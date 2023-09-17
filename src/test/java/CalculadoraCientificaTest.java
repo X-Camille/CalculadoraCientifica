@@ -29,5 +29,5 @@ public class CalculadoraCientificaTest {
         } catch (IllegalArgumentException e) {
             assertEquals("No es una ecuación cuadrática", e.getMessage());
         }
-    }
+    }//
 }
