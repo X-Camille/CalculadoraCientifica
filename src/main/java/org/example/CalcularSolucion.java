@@ -29,8 +29,8 @@ public class CalcularSolucion {
     }
     public static boolean verificarNumero(String numero){
         try {
-            Double.parseDouble(numero);
-            return false;
+            Double.parseDouble(numero); //no cuestionen por qué el true y el false
+            return false; //están al revés
         } catch (NumberFormatException e) {
             System.out.println("Error, formato de número no válido.");
             return true;

@@ -6,8 +6,8 @@ public class CalcularSolucionTest {
 
     @Test
     public void verificarNumeroTest() {
-        String[] numeros = {"2", "ae", "2.3", "", "2a", "2,1"};
-        boolean[] esperado = {false, true, false, true, true, true};
+        String[] numeros = {"2", "ae", "2.3", "", "2a", "2,1"}; //tengo mis razones para hacerlo al revés
+        boolean[] esperado = {false, true, false, true, true, true}; //mi cerebro lo entiende
         for (int i = 0; i < 6; i++) {
             Assertions.assertEquals(CalcularSolucion.verificarNumero(numeros[i]),
                     esperado[i]);
