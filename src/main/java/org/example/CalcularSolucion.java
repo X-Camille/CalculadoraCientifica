@@ -1,6 +1,6 @@
 package org.example;
+
 import org.apache.commons.math3.linear.*;
-import org.apache.commons.math3.exception.*;
 
 import java.util.Scanner;
 
@@ -27,7 +27,7 @@ public class CalcularSolucion {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-    private static boolean verificarNumero(String numero){
+    public static boolean verificarNumero(String numero){
         try {
             Double.parseDouble(numero);
             return false;
@@ -61,7 +61,7 @@ public class CalcularSolucion {
         tieneSolucionUnica(coeficientes,terminosIndependientes);
     }
 
-    private static void tieneSolucionUnica(double [][] coeficientes, double[] terminosIndependientes){
+    public static boolean tieneSolucionUnica(double [][] coeficientes, double[] terminosIndependientes){
         RealMatrix coefficientsMatrix = new Array2DRowRealMatrix(coeficientes, false);
         DecompositionSolver solver = new LUDecomposition(coefficientsMatrix).getSolver();
         RealVector constantsVector = new ArrayRealVector(terminosIndependientes, false);
@@ -69,8 +69,10 @@ public class CalcularSolucion {
             RealVector solucion = solver.solve(constantsVector);
             System.out.println("Solución:");
             System.out.println(solucion);
+            return true;
         } catch (SingularMatrixException e) {
             System.err.println("El sistema de ecuaciones no tiene solución única.");
+            return false;
         }
     }
 
