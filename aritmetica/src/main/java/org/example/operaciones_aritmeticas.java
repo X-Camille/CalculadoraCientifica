@@ -25,13 +25,13 @@ public class operaciones_aritmeticas {
             [7] Mostrar el mayor de los dos valores
             [8] Mostrar el menor de los dos valores
             [9] Finalizar
-            
-            Escoja una opción:""");
+                """);
     }
 
     public static int ingresarOpcion() {
         int opcion;
         do {
+            System.out.println("Escoja una opción válida:");
             opcion = validarEntradaOpcion();
         } while (opcion < 1 || opcion > 9);
         return opcion;
@@ -100,7 +100,7 @@ public class operaciones_aritmeticas {
         }
     }
     public static int validarEntradaOpcion() {
-        int entrada = 0;
+        int entrada = -1;
         try {
             entrada = ingresar().nextInt();
         } catch (Exception e) {
