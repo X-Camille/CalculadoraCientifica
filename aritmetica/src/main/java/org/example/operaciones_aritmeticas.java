@@ -10,7 +10,7 @@ public class operaciones_aritmeticas {
     public static void main(String[] args) {
         num1 = validarNum(num1,"Ingrese el primer numero: ");
         num2 = validarNum(num2,"Ingrese el segundo número: ");
-
+        dividir(num1,num2);
 
     }
     // método para el mayor de dos números
@@ -128,8 +128,8 @@ public class operaciones_aritmeticas {
     public static double validarNum(double numero,String mensaje) {
         boolean NumValido = false;
         do{
-            System.out.println(mensaje);
             try {
+                System.out.println(mensaje);
                 numero = ingresar().nextDouble();
                 NumValido = true;
             }catch (Exception e){
