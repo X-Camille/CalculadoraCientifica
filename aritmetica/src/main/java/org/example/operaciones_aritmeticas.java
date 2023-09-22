@@ -8,11 +8,111 @@ public class operaciones_aritmeticas {
 
     // método main
     public static void main(String[] args) {
-        num1 = validarNum(num1,"Ingrese el primer numero: ");
-        num2 = validarNum(num2,"Ingrese el segundo número: ");
-        dividir(num1,num2);
-
+        mostrarOpciones();
+        ingresarOpcion();
     }
+
+    // método menú
+    public static void mostrarOpciones() {
+        System.out.println("""
+            
+            [1] Sumar los dos valores
+            [2] Restar los dos valores
+            [3] Multiplicar los dos valores
+            [4] Dividir los dos valores
+            [5] Obtener la potencia
+            [6] Obtener el porcentaje
+            [7] Mostrar el mayor de los dos valores
+            [8] Mostrar el menor de los dos valores
+            [9] Finalizar
+            
+            Escoja una opción:""");
+    }
+
+    public static int ingresarOpcion() {
+        int opcion;
+        do {
+            opcion = validarEntradaOpcion();
+        } while (opcion < 1 || opcion > 9);
+        return opcion;
+    }
+    public static void procesarOpcion(int opcion) {
+        switch (opcion) {
+            case 1:
+                System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA SUMA");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println(num1+" + "+num2+" = "+sumar(num1,num2));
+                break;
+            case 2:
+                System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA RESTA");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println(num1+" - "+num2+" = "+restar(num1,num2));
+                break;
+            case 3:
+                System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA MULTIPLICACIÓN");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println(num1+" + "+num2+" = "+multiplicar(num1,num2));
+                break;
+            case 4:
+                System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA DIVISIÓN");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println(num1+" + "+num2+" = "+dividir(num1,num2));
+                break;
+            case 5:
+                System.out.println("""
+                >>>INGRESE LOS VALORES PARA OBTENER LA POTENCIA
+                   > EL PRIMER VALOR ES LA BASE DE LA POTENCIA
+                   > EL SEGUNDO VALOR ES EL EXPONENTE""");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println("La potencia obtenida de "+num1+" ^ "+num2+" es "+potencia(num1,num2));
+                break;
+            case 6:
+                System.out.println("""
+                >>>INGRESE LOS VALORES PARA OBTENER EL PORCENTAJE (NO NEGATIVO)
+                   > EL PRIMER VALOR INGRESADO SERÁ AL CUAL SE LE CALCULARÁ EL PORCENTAJE
+                   > EL SEGUNDO VALOR INGRESADO SERÁ EL PORCENTAJE""");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                System.out.println("El "+num2+"% del número "+num1+" es "+porcentaje(num1,num2));
+                break;
+            case 7:
+                System.out.println(">>>INGRESE LOS VALORES PARA VERIFICAR CUÁL NÚMERO ES MAYOR");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                numMayor(num1,num2);
+                break;
+            case 8:
+                System.out.println(">>>INGRESE LOS VALORES PARA VERIFICAR CUÁL NÚMERO ES MENOR");
+                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num2 = validarNum(num2,"Ingrese el segundo número: ");
+                numMenor(num1,num2);
+                break;
+            case 9:
+                System.out.println("El programa a Finalizado");
+                break;
+            default:
+                System.err.println("Opción inválida! Escoja una opción (Utilizar un número del 1 al 9)");
+        }
+    }
+    public static int validarEntradaOpcion() {
+        int entrada = 0;
+        try {
+            entrada = ingresar().nextInt();
+        } catch (Exception e) {
+            System.err.println("Opción inválida");
+        }
+        return entrada;
+    }
+
+
+
+
+
     // método para el mayor de dos números
     public static void numMayor(double a, double b){
         if(a>b){
@@ -73,7 +173,7 @@ public class operaciones_aritmeticas {
 
     // método potencia
     public static double potencia(double a, double b){
-        // a distinto de b
+        // a distinto de b, en términos de que un valor ingresado sea cero
         validarNumPotencia(a,b);
         double potencia = Math.pow(a,b);
         return potencia;
