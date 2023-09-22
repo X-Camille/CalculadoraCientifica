@@ -79,12 +79,23 @@ public class operaciones_aritmeticas {
     public static double porcentaje(double a, double b){
         // a, b no deben ser negativos
         // se puede obtener el o% de un número
-        return a*(b/100);
+        validarNumPorcentaje(a,b);
+        double porcentaje = a*(b/100);
+        return porcentaje;
     }
 
     // método de validaciones de porcentaje
     public static void validarNumPorcentaje(double valor1,double valor2) {
-
+        boolean NumValido = false;
+        do{
+            try {
+                if((valor1>=0)&&(valor2>=0)){
+                    NumValido = true;
+                }
+            }catch (Exception e){
+                System.err.println("Error! Los números no pueden ser negativos. Ingrese nuevamente");
+            }
+        }while(!NumValido);
     }
 
 
