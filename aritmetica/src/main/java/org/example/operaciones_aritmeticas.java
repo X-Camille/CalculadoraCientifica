@@ -15,7 +15,7 @@ public class operaciones_aritmeticas {
     // método menú
     public static void mostrarOpciones() {
         System.out.println("""
-            
+      
             [1] Sumar los dos valores
             [2] Restar los dos valores
             [3] Multiplicar los dos valores
