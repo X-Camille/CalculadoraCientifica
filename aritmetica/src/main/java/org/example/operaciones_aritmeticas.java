@@ -10,10 +10,29 @@ public class operaciones_aritmeticas {
     public static void main(String[] args) {
         num1 = validarNum(num1,"Ingrese el primer numero: ");
         num2 = validarNum(num2,"Ingrese el segundo número: ");
-        double resultado;
-        resultado = dividir(num1,num2);
 
 
+    }
+    // método para el mayor de dos números
+    public static void numMayor(double a, double b){
+        if(a>b){
+            System.out.println("El primer número ingresado es mayor: "+a);
+        }else if(b>a){
+            System.out.println("El segundo número ingresado es mayor: "+b);
+        }else{
+            System.out.println("Los números son iguales");
+        }
+    }
+
+    // método para el menor de dos números
+    public static void numMenor(double a, double b){
+        if(a<b){
+            System.out.println("El primer número ingresado es menor: "+a);
+        }else if(b<a){
+            System.out.println("El segundo número ingresado es menor: "+b);
+        }else{
+            System.out.println("Los números son iguales");
+        }
     }
 
     // métodos aritmeticos
