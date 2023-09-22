@@ -8,10 +8,19 @@ public class operaciones_aritmeticas {
 
     // método main
     public static void main(String[] args) {
-        mostrarOpciones();
-        ingresarOpcion();
+        int opcion;
+        do {
+            mostrarOpciones();
+            opcion = ingresarOpcion();
+            procesarOpcion(opcion);
+        }while(opcion!=9);
     }
 
+    // método de inicialización de menú
+    public static void iniciar(){
+        mostrarOpciones();
+        procesarOpcion(ingresarOpcion());
+    }
     // método menú
     public static void mostrarOpciones() {
         System.out.println("""
@@ -40,34 +49,34 @@ public class operaciones_aritmeticas {
         switch (opcion) {
             case 1:
                 System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA SUMA");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 System.out.println(num1+" + "+num2+" = "+sumar(num1,num2));
                 break;
             case 2:
                 System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA RESTA");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 System.out.println(num1+" - "+num2+" = "+restar(num1,num2));
                 break;
             case 3:
                 System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA MULTIPLICACIÓN");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
-                System.out.println(num1+" + "+num2+" = "+multiplicar(num1,num2));
+                System.out.println(num1+" * "+num2+" = "+multiplicar(num1,num2));
                 break;
             case 4:
                 System.out.println(">>>INGRESE LOS VALORES PARA REALIZAR LA DIVISIÓN");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
-                System.out.println(num1+" + "+num2+" = "+dividir(num1,num2));
+                System.out.println(num1+" / "+num2+" = "+dividir(num1,num2));
                 break;
             case 5:
                 System.out.println("""
                 >>>INGRESE LOS VALORES PARA OBTENER LA POTENCIA
                    > EL PRIMER VALOR ES LA BASE DE LA POTENCIA
                    > EL SEGUNDO VALOR ES EL EXPONENTE""");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 System.out.println("La potencia obtenida de "+num1+" ^ "+num2+" es "+potencia(num1,num2));
                 break;
@@ -76,19 +85,19 @@ public class operaciones_aritmeticas {
                 >>>INGRESE LOS VALORES PARA OBTENER EL PORCENTAJE (NO NEGATIVO)
                    > EL PRIMER VALOR INGRESADO SERÁ AL CUAL SE LE CALCULARÁ EL PORCENTAJE
                    > EL SEGUNDO VALOR INGRESADO SERÁ EL PORCENTAJE""");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 System.out.println("El "+num2+"% del número "+num1+" es "+porcentaje(num1,num2));
                 break;
             case 7:
                 System.out.println(">>>INGRESE LOS VALORES PARA VERIFICAR CUÁL NÚMERO ES MAYOR");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 numMayor(num1,num2);
                 break;
             case 8:
                 System.out.println(">>>INGRESE LOS VALORES PARA VERIFICAR CUÁL NÚMERO ES MENOR");
-                num1 = validarNum(num1,"Ingrese el primer numero: ");
+                num1 = validarNum(num1,"Ingrese el primer número: ");
                 num2 = validarNum(num2,"Ingrese el segundo número: ");
                 numMenor(num1,num2);
                 break;
@@ -163,6 +172,9 @@ public class operaciones_aritmeticas {
                 //valor2 = ingresar().nextDouble();
                 if(valor2 != 0){
                     NumValido = true;
+                }else if(valor2 == 0){
+                    System.out.println("El número debe ser distinto de cero, el resultado se mostrará como indefinido/infinito (error matemático)");
+                    return;
                 }
             }catch (Exception e){
                 System.err.println("Error! El número no es válido, ingrese nuevamente");
@@ -187,9 +199,13 @@ public class operaciones_aritmeticas {
                     NumValido = true;
                 }else if((valor1!=0)&&(valor2==0)){
                     NumValido = true;
+                }else{
+                    System.out.println("Si uno de los números es cero,el otro debe ser distinto de cero. Ingrese nuevamente");
+                    System.out.println("El error matemático se mostrará como resultado: 1.0");
+                    return;
                 }
             }catch (Exception e){
-                System.err.println("Error! Si uno de los números es cero,el otro debe ser distinto de cero. Ingrese nuevamente");
+                System.err.println("Error! El número no es válido, ingrese nuevamente");
             }
         }while(!NumValido);
 
@@ -210,9 +226,12 @@ public class operaciones_aritmeticas {
             try {
                 if((valor1>=0)&&(valor2>=0)){
                     NumValido = true;
+                }else{
+                    System.out.println("Los números no pueden ser negativos. Ingrese nuevamente");
+                    return;
                 }
             }catch (Exception e){
-                System.err.println("Error! Los números no pueden ser negativos. Ingrese nuevamente");
+                System.err.println("Error! El número no es válido, ingrese nuevamente");
             }
         }while(!NumValido);
     }
